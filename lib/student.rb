@@ -105,7 +105,14 @@ def self.all_students_in_grade_X(x)
   end
 end
 
-    
+def save
+sql = <<-SQL
+INSERT INTO students (name, grade)
+VALUES (?,?)
+SQL
+DB[:conn].execute(sql, self.name, self.grade)
+end
+
   
   
 
