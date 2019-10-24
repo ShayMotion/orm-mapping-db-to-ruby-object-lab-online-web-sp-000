@@ -1,3 +1,5 @@
+require_relative '../config/environment'
+
 class Student
   attr_accessor :id, :name, :grade
   @@all = []
