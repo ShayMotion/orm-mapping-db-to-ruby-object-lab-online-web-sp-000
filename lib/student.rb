@@ -53,6 +53,17 @@ sql = <<-SQL
   end
 end
 
+def self.count_all_students_in_grade_9
+  sql = <<-SQL
+  SELECT *
+  FROM students
+  WHERE students.grade = 9
+  SQL
+  DB[:conn].execute(sql).collect do |row|
+    self.new_from_db(row)
+  end
+end
+
 def self.students_below_12th_grade
   sql = <<-SQL
   SELECT *
@@ -74,7 +85,7 @@ def self.students_below_12th_grade
     DB[:conn].execute(sql).collect do |row|
       self.new_from_db(row).first
     end
-  end	  end
+  end
 
   def self.first_x_student_in_grade_10
         sql = <<-SQL
@@ -84,6 +95,8 @@ def self.students_below_12th_grade
   SQL
   DB[:conn].execute(sql).collect do |row|
       self.new_from_db(row)
+end
+
 end
 
 def self.all_students_in_grade_X
